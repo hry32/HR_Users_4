@@ -19,12 +19,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.0" />
-    <PackageReference Include="Unity" Version="5.8.0" />
-    <PackageReference Include="Unity.Abstractions" Version="3.3.0" />
-    <PackageReference Include="Unity.AspNet.WebApi" Version="4.0.1" />
-    <PackageReference Include="Unity.Configuration" Version="5.2.3" />
-    <PackageReference Include="Unity.Container" Version="5.8.0" />
-    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="2.0.10" />
+    <PackageReference Include="Unity" Version="5.11.10" />
+    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.11.5" />
   </ItemGroup>
 
   <ItemGroup>

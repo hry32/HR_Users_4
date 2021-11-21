@@ -12,17 +12,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Unity.Microsoft.DependencyInjection;
 using Unity;
-
 using CRUD_DAL.Interface;
 using CRUD_DAL.Data;
+using static CRUD_DAL.Models.Persons;
+using CRUD_BAL.Service;
+
+
 
 namespace Users
 {
     public class Program
     {
+   
         public static void Main(string[] args)
         {
-
             Log.Logger = new LoggerConfiguration()
              .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
              .CreateLogger();
@@ -45,6 +48,7 @@ namespace Users
             }
         }
 
+
         private static void CreateDbIfNotExists(IHost host)
         {
             using (var scope = host.Services.CreateScope())
@@ -63,12 +67,17 @@ namespace Users
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-                 
-                .UseSerilog()                                
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .UseUnityServiceProvider()
+                //.UseUnityServiceProvider()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+
+
     }
 }

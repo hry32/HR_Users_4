@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,10 +15,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.0" />
-    <PackageReference Include="Unity" Version="5.8.0" />
-    <PackageReference Include="Unity.Abstractions" Version="3.3.0" />
-    <PackageReference Include="Unity.AspNet.WebApi" Version="4.0.1" />
-    <PackageReference Include="Unity.Container" Version="5.8.0" />
+    <PackageReference Include="Unity" Version="5.11.10" />
+    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.11.5" />
   </ItemGroup>
 
 </Project>

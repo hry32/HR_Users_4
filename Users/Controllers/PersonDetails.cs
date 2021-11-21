@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static CRUD_DAL.Models.Persons;
-using Unity.Container;
 using CRUD_DAL.Unity;
+using Unity;
 
 namespace Users.Controllers
 {
@@ -17,12 +17,17 @@ namespace Users.Controllers
     [ApiController]
     public class PersonDetailsController : ControllerBase
     {
-        UnityConfig unity = new UnityConfig();
+        //UnityConfig unity = new UnityConfig();
         private readonly PersonService _personService;
        
-        public PersonDetailsController(PersonService ProductService)
+        /*public PersonDetailsController(PersonService ProductService)
         {
             _personService = ProductService;
+        }*/
+
+        public PersonDetailsController(IUnityContainer container)
+        {
+            _personService = container.Resolve<PersonService>();
         }
 
         [HttpPost]
