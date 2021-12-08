@@ -9,9 +9,12 @@ namespace CRUD_DAL.Data
     public class ApplicationDbContext : DbContext
     {
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
+       public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        //    public ApplicationDbContext(string DefaultConnection): base(DefaultConnection)
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> DefaultConnection) : base(DefaultConnection)
+        //public ApplicationDbContext() : base("DefaultConnection")
 
+        { 
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

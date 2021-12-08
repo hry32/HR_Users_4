@@ -10,7 +10,7 @@ using static CRUD_DAL.Models.Persons;
 
 namespace CRUD_DAL.Repository
 {
-    public class RepositoryPerson : IRepository<Person>
+   /* public class RepositoryPerson : IRepository<Person>
     {
         ApplicationDbContext _dbContext;
         public RepositoryPerson(ApplicationDbContext applicationDbContext)
@@ -52,6 +52,29 @@ namespace CRUD_DAL.Repository
             return _dbContext.Persons.Where(x => x.IsDeleted == false && x.Id == Id).FirstOrDefault();
         }
 
+        List<Person> IRepository<Person>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
 
-    }
+        public Person GetById(object Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<Person>.Create(Person _object)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(object Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+    }*/
 }

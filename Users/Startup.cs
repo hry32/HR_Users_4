@@ -9,7 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System;
 using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 using Users.Controllers;
 //using Unity;
 using static CRUD_DAL.Models.Persons;
@@ -18,34 +22,31 @@ namespace Users
 {
     public class Startup
     {         
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;       
 
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        
-       // public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
         }
 
         public void ConfigureContainer(IUnityContainer container)
         {
-            container.RegisterType<IRepository<Person>, RepositoryPerson>();
-            //container.RegisterType<PersonService, PersonService>();
+            container.RegisterType<IRepository<Person>, GenericRepository<Person>>();
             container.RegisterType<PersonDetailsController>();
-            container.RegisterType<DbContext, ApplicationDbContext>();
-            // container.RegisterType<PersonService>;
-        }
+            container.RegisterType<ApplicationDbContext>(new InjectionConstructor(new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
+                .Options));
+       }
 
 
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -53,9 +54,7 @@ namespace Users
             }
 
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
